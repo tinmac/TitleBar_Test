@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TitleBar_Test (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TitleBar_Test (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
