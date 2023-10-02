@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 namespace TitleBar_Test
 {
     /// <summary>
-    /// Works a treat!
+    /// Works a treat!!
     /// 
     /// Taken from MS learn : https://learn.microsoft.com/en-us/windows/apps/develop/title-bar?tabs=wasdk
     /// 
