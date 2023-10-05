@@ -8,44 +8,108 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid
-        x:Name="AppTitleBar"
-        Height="48"
-        VerticalAlignment="Top">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
-            <ColumnDefinition x:Name="IconColumn" Width="Auto" />
-            <ColumnDefinition x:Name="TitleColumn" Width="Auto" />
-            <ColumnDefinition x:Name="LeftDragColumn" Width="*" />
-            <ColumnDefinition x:Name="SearchColumn" Width="Auto" />
-            <ColumnDefinition x:Name="RightDragColumn" Width="*" />
-            <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
-        </Grid.ColumnDefinitions>
+        <Grid
+            x:Name="AppTitleBar"
+            Height="48"
+            VerticalAlignment="Top">
 
-        <Image
-            x:Name="TitleBarIcon" 
-            Width="24" Height="24"
-            Grid.Column="1"
-            Margin="8 0 0 0"
-            Source="/Assets/window_icon.png" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0" />
+                <ColumnDefinition x:Name="IconColumn" Width="Auto" />
+                <ColumnDefinition x:Name="TitleColumn" Width="Auto" />
+                <ColumnDefinition x:Name="LeftDragColumn" Width="*" />
+                <ColumnDefinition x:Name="SearchColumn" Width="Auto" />
+                <ColumnDefinition x:Name="RightDragColumn" Width="*" />
+                <ColumnDefinition x:Name="RightPaddingColumn" Width="0" />
+            </Grid.ColumnDefinitions>
 
-        <TextBlock
-            x:Name="TitleTextBlock"
-            Grid.Column="2"
-            Margin="4 0 0 0"
-            VerticalAlignment="Center"
-            Style="{StaticResource CaptionTextBlockStyle}"
-            Text="App title" />
+            <Image
+                x:Name="TitleBarIcon"
+                Grid.Column="1"
+                Width="24"
+                Height="24"
+                Margin="8 0 0 0"
+                Source="/Assets/window_icon.png" />
 
-        <StackPanel Grid.Column="4" Orientation="Horizontal">
-            <AutoSuggestBox
-                Width="260"
-                Margin="4 0"
+            <TextBlock
+                x:Name="TitleTextBlock"
+                Grid.Column="2"
+                Margin="4 0 0 0"
                 VerticalAlignment="Center"
-                PlaceholderText="Search"
-                QueryIcon="Find" />
-        </StackPanel>
+                Style="{StaticResource CaptionTextBlockStyle}"
+                Text="App title" />
 
+            <StackPanel Grid.Column="4" Orientation="Horizontal">
+
+                <ComboBox Margin="0 10 0 0" x:Name="themeMode"  SelectionChanged="themeMode_SelectionChanged">
+                    <ComboBoxItem Content="Light" Tag="Light" />
+                    <ComboBoxItem Content="Dark" Tag="Dark" />
+                    <ComboBoxItem Content="Use system setting" Tag="Default" />
+                </ComboBox>
+
+                <MenuBar Margin="0 0 0 0">
+
+                    
+
+                    <!--  View  -->
+                    <MenuBarItem Title="View">
+                     
+                        <MenuFlyoutItem Click="btn_open_mica_Click" Text="Mica" />
+                        <MenuFlyoutItem Click="btn_open_mica_alt_Click" Text="Mica Alt" />
+                        <MenuFlyoutItem Click="btn_open_acrylic_Click" Text="Acrylic" />
+                        <MenuFlyoutItem Click="btn_open_acrylic_thin_Click" Text="Acrylic Thin" />
+                        <MenuFlyoutItem Click="btn_open_plain_Click" Text="Plain" />
+
+
+                        <!--<MenuFlyoutSeparator />
+
+
+                    <MenuFlyoutSeparator />
+                    <RadioMenuFlyoutItem
+                        GroupName="bg"
+                        IsChecked="{x:Bind ViewModel.IsPlain, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Text="Plain" />
+                    <RadioMenuFlyoutItem
+                        GroupName="bg"
+                        IsChecked="{x:Bind ViewModel.IsMica, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Text="Mica" />
+                    <RadioMenuFlyoutItem
+                        GroupName="bg"
+                        IsChecked="{x:Bind ViewModel.IsAcrylic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Text="Acrylic" />-->
+
+                    </MenuBarItem>
+
+                </MenuBar>
+
+
+                <AutoSuggestBox
+                    Width="260"
+                    Margin="4 0"
+                    VerticalAlignment="Center"
+                    PlaceholderText="Search"
+                    QueryIcon="Find" />
+            </StackPanel>
+
+        </Grid>
+
+
+        <StackPanel Grid.Row="1" Margin="20">
+
+            <TextBlock Style="{ThemeResource BodyTextBlockStyle}" Text="Selected Theme" />
+            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Text="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Margin="0 0 0 0"
+                Style="{ThemeResource CaptionTextBlockStyle}"
+                Text="{x:Bind ViewModel.ChangeStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        </StackPanel>
     </Grid>
+
 </Window>
